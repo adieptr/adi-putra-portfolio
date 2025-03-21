@@ -45,7 +45,7 @@
   --color-tertiary: #0d1013;
   --color-gray: #f6f6f6;
   --color-subtitle: #ffd901;
-  --background-color-1: linear-gradient(145deg, #1e2024, #23272b);
+  --background-color-1: linear-gradient(145deg, #1e2024, #2f2f31);
   --background-color-2: #212428;
   --shadow-1: 10px 10px 19px #1c1e22,
       -10px -10px 19px #262a2e;
@@ -11765,37 +11765,13 @@ body.template-color-1 {
   z-index: 1;
   overflow: hidden;
 }
-.single-demo .inner.badge-1::after {
-  position: absolute;
-  content: "Hot";
-  padding: 3px 10px;
-  border-radius: 5px;
-  z-index: 2;
-  font-size: 14px;
-  top: 15px;
-  right: 15px;
-  background: linear-gradient(to right, #6a67ce, #fc636b) !important;
-  color: var(--color-white);
-  transition: 0.3s;
-}
+
 .single-demo .inner.badge-2 {
   position: relative;
   z-index: 1;
   overflow: hidden;
 }
-.single-demo .inner.badge-2::after {
-  position: absolute;
-  content: "New";
-  padding: 3px 10px;
-  border-radius: 5px;
-  z-index: 2;
-  font-size: 14px;
-  top: 15px;
-  right: 15px;
-  background: linear-gradient(to right, #6a67ce, #fc636b) !important;
-  color: var(--color-white);
-  transition: 0.3s;
-}
+
 .single-demo .inner .thumbnail {
   border-radius: 6px 6px 0 0;
 }
