@@ -102,12 +102,17 @@
     padding-bottom:40px;
   }
   .avatar{
-    width:84px;height:84px;border-radius:50%;
-    background:linear-gradient(155deg,var(--accent),#7C93FF);
-    color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;
-    display:flex;align-items:center;justify-content:center;
-    animation:fadein .6s ease both;
-  }
+  width:84px;
+  height:84px;
+  border-radius:50%;
+  overflow:hidden;
+}
+
+.avatar-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
   @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
 
   .profile h1{font-size:clamp(26px,2.6vw,32px);line-height:1.15;}
@@ -327,7 +332,13 @@
 
     <!-- profile -->
     <aside class="profile">
-      <div class="avatar">AP</div>
+     <div class="avatar">
+  <img
+    src="assets/images/slider/adi.jpg"
+    alt="Foto Adi Putra"
+    class="avatar-img"
+  />
+</div>
       <div>
         <h1 data-i18n="hero.name">Adi Putra</h1>
         <!-- <p class="role" data-i18n="hero.role">Web &amp; Software Developer</p> -->
