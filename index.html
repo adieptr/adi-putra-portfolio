@@ -287,15 +287,11 @@
   /* responsive */
   @media (max-width:880px){
     .layout{grid-template-columns:1fr;}
-    body.detail-open .layout{display:grid;}
     .profile{position:relative;top:0;padding-bottom:20px;border-bottom:1px solid var(--line);}
     nav.section-nav{flex-direction:row;flex-wrap:wrap;gap:14px;}
     nav.section-nav a{padding:4px 0;border-left:none;border-bottom:2px solid transparent;padding-left:0;}
     nav.section-nav a:hover, nav.section-nav a.active{border-bottom-color:var(--accent);border-left:none;}
     .journey-grid{grid-template-columns:1fr;}
-  }
-  @media (max-width:880px){
-    body.detail-open .profile{display:none;}
   }
   @media (max-width:600px){
     .video-grid{grid-template-columns:repeat(2,1fr);}
@@ -332,7 +328,7 @@
 
     <!-- profile -->
     <aside class="profile">
-     <div class="avatar">
+      <div class="avatar">
   <img
     src="assets/images/slider/adi.jpg"
     alt="Foto Adi Putra"
