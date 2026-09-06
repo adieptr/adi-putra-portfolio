@@ -1,749 +1,1244 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Adi Putra - Portfolio</title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="assets/images/logo-a.png">
-   
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick-theme.css">
-    <link rel="stylesheet" href="assets/css/vendor/aos.css">
-    <link rel="stylesheet" href="assets/css/plugins/feature.css">
- 
-    <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Adi Putra — Portofolio</title>
+<meta name="description" content="Portofolio Adi Putra">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F6F3;
+    --ink:#15161B;
+    --muted:#6B6E78;
+    --line:#E1E0D9;
+    --surface:#EFEFE9;
+    --accent:#3552FF;
+    --accent-soft:#E9EDFF;
+    --radius:2px;
+    --maxw:1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', 'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  p{margin:0;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font-family:inherit;cursor:pointer;background:none;border:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--accent);color:#fff;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+  .mono{font-family:'IBM Plex Mono', monospace;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:40;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px clamp(20px,5vw,56px);
+    background:rgba(246,246,243,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;font-size:18px;letter-spacing:-0.02em;
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo .dot{width:7px;height:7px;background:var(--accent);border-radius:50%;display:inline-block;}
+
+  .topbar-right{display:flex;align-items:center;gap:18px;}
+
+  .lang-switch{
+    display:flex;align-items:center;border:1px solid var(--line);border-radius:20px;
+    padding:3px;gap:2px;background:#fff;
+  }
+  .lang-switch button{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;padding:6px 12px;border-radius:16px;
+    color:var(--muted);transition:background .18s ease,color .18s ease;
+  }
+  .lang-switch button[aria-pressed="true"]{background:var(--ink);color:#fff;}
+
+  .cta-small{
+    font-size:13px;font-weight:500;padding:9px 16px;border:1px solid var(--ink);border-radius:20px;
+    display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+    transition:background .18s ease,color .18s ease;
+  }
+  .cta-small:hover{background:var(--ink);color:#fff;}
+
+  .icon-16{width:16px;height:16px;flex:none;display:block;}
+
+  /* ---------- layout ---------- */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,56px);}
+
+  .layout{
+    display:grid;
+    grid-template-columns:340px 1fr;
+    gap:clamp(30px,6vw,80px);
+    padding-top:clamp(40px,6vw,72px);
+  }
+
+  /* ---------- profile / kolom kiri ---------- */
+  .profile{
+    position:sticky;top:96px;align-self:start;
+    display:flex;flex-direction:column;gap:26px;
+    padding-bottom:40px;
+  }
+  .avatar{
+    width:84px;height:84px;border-radius:50%;
+    background:linear-gradient(155deg,var(--accent),#7C93FF);
+    color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;
+    display:flex;align-items:center;justify-content:center;
+    animation:fadein .6s ease both;
+  }
+  @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  .profile h1{font-size:clamp(26px,2.6vw,32px);line-height:1.15;}
+  .profile .role{color:var(--muted);font-size:15px;margin-top:6px;}
+
+  .profile .meta{
+    display:flex;flex-direction:column;gap:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:16px 0;
+  }
+  .profile .meta span.k{color:var(--ink);}
+
+  .profile-actions{display:flex;flex-direction:column;gap:10px;}
+  .btn-primary{
+    background:var(--ink);color:#fff;text-align:center;padding:13px 18px;border-radius:24px;
+    font-size:14px;font-weight:500;transition:background .18s ease;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  }
+  .btn-primary:hover{background:var(--accent);}
+  .btn-secondary{
+    background:#fff;color:var(--ink);text-align:center;padding:12px 18px;border-radius:24px;
+    font-size:14px;font-weight:500;border:1px solid var(--line);transition:border-color .18s ease,background .18s ease;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  }
+  .btn-secondary:hover{border-color:var(--ink);background:var(--surface);}
+
+  nav.section-nav{display:flex;flex-direction:column;gap:2px;margin-top:6px;}
+  nav.section-nav a{
+    font-size:13.5px;color:var(--muted);padding:7px 0;border-left:2px solid transparent;padding-left:12px;
+    transition:color .15s ease,border-color .15s ease;
+  }
+  nav.section-nav a:hover, nav.section-nav a.active{color:var(--ink);border-left-color:var(--accent);}
+
+  /* ---------- kolom kanan / content ---------- */
+  .content section{padding:56px 0;border-bottom:1px solid var(--line);}
+  .content section:last-of-type{border-bottom:none;}
+
+  .section-heading{font-size:clamp(22px,2.6vw,28px);margin-bottom:22px;max-width:38ch;}
+
+  .prose{max-width:62ch;color:var(--ink);}
+  .prose p + p{margin-top:14px;}
+  .prose{color:#2B2D34;}
+
+  /* kemampuan */
+  .skill-group{margin-top:22px;}
+  .skill-group:first-of-type{margin-top:0;}
+  .skill-group .label{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:10px;display:block;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-size:13.5px;padding:8px 14px;border:1px solid var(--line);border-radius:18px;background:#fff;
+    color:var(--ink);
+  }
+  .tag.primary{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:500;}
+
+  /* proyek */
+  /* Grid items no longer stretch to fill row height, so each card can size itself
+     to its own image's natural aspect ratio without distortion or leftover empty space. */
+  .project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:22px;align-items:start;}
+  .project-card{
+    border:1px solid var(--line);background:#fff;border-radius:var(--radius);
+    display:flex;flex-direction:column;cursor:pointer;text-align:left;overflow:hidden;
+    transition:border-color .18s ease, transform .18s ease;
+  }
+  .project-card:hover{border-color:var(--ink);transform:translateY(-2px);}
+  /* Images render at their natural aspect ratio (height:auto) instead of being forced
+     into a fixed aspect-ratio box, so nothing gets stretched or cropped. */
+  .project-thumb{width:100%;height:auto;display:block;border-bottom:1px solid var(--line);background:var(--surface);}
+  .project-card .card-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:12px;flex:1;}
+  .project-card .tag-line{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--accent);}
+  .project-card h3{font-size:17px;}
+  .project-card p{font-size:13.5px;color:var(--muted);}
+  .project-card .stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px;}
+  .project-card .stack span{font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--muted);border:1px solid var(--line);padding:3px 8px;border-radius:12px;}
+
+  /* sertifikat */
+  .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-top:22px;align-items:start;}
+  .cert-card{border:1px solid var(--line);background:#fff;border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:border-color .18s ease, transform .18s ease;text-align:left;}
+  .cert-card:hover{border-color:var(--ink);transform:translateY(-2px);}
+  .cert-visual{width:100%;height:auto;display:block;border-bottom:1px solid var(--line);background:var(--surface);}
+  .cert-body{padding:16px 18px;}
+  .cert-body h3{font-size:14.5px;margin-bottom:4px;}
+  .cert-body p{font-size:12.5px;color:var(--muted);}
+  .placeholder-note{margin-top:10px;font-size:12px;color:var(--muted);font-style:italic;}
+
+  /* konten portfolio video dan poster */
+  .content-sub{margin-top:34px;}
+  .content-sub:first-of-type{margin-top:22px;}
+  .content-sub h3{font-size:15px;font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--muted);margin-bottom:14px;}
+
+  .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;align-items:start;}
+  .video-card{border:1px solid var(--line);background:#fff;border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:border-color .18s ease, transform .18s ease;text-align:left;}
+  .video-card:hover{border-color:var(--ink);transform:translateY(-2px);}
+  /* Default box matches vertical short-form video (9:16); real horizontal embeds use
+     the .ratio-16-9 modifier so nothing gets squeezed or cropped. */
+  .video-thumb{position:relative;width:100%;aspect-ratio:9/16;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden;}
+  .video-thumb.ratio-16-9{aspect-ratio:16/9;}
+  .video-thumb video{width:100%;height:100%;object-fit:cover;display:block;background:#000;pointer-events:none;}
+  .video-thumb iframe{width:100%;height:100%;display:block;border:0;}
+  .video-info{padding:12px 14px;}
+  .video-info .v-title{font-size:12.5px;font-weight:500;line-height:1.4;}
+  .video-info .v-meta{font-size:11px;color:var(--muted);margin-top:5px;}
+
+  .poster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;align-items:start;}
+  .poster-card{border:1px solid var(--line);background:#fff;border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:border-color .18s ease, transform .18s ease;text-align:left;}
+  .poster-card:hover{border-color:var(--ink);transform:translateY(-2px);}
+  .poster-visual{width:100%;height:auto;display:block;background:var(--surface);}
+  .poster-info{padding:14px 16px;}
+  .poster-info .p-title{font-size:13px;font-weight:500;}
+  .poster-info .p-meta{font-size:11.5px;color:var(--muted);margin-top:4px;}
+
+  /*  (pendidikan / pengalaman) */
+  .journey-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:22px;}
+  .journey-card{border:1px solid var(--line);background:#fff;border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:border-color .18s ease, transform .18s ease;text-align:left;width:100%;display:block;}
+  .journey-card:hover{border-color:var(--ink);transform:translateY(-2px);}
+  .journey-visual{width:100%;aspect-ratio:4/3;display:block;border-bottom:1px solid var(--line);}
+  .journey-body{padding:18px 20px 20px;}
+  .journey-card h3{font-size:15px;margin-bottom:10px;}
+  .journey-card ul{display:flex;flex-direction:column;gap:8px;}
+  .journey-card li{font-size:13.5px;color:var(--muted);padding-left:14px;position:relative;}
+  .journey-card li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;background:var(--line);border-radius:50%;}
+  .journey-note{margin-top:10px;font-size:12.5px;color:var(--muted);font-style:italic;}
+
+  /* kontak / footer */
+  .contact-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px;}
+  footer{padding:36px clamp(20px,5vw,56px);border-top:1px solid var(--line);}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);}
+
+  /* ---------- halaman detail ---------- */
+  .detail-view{display:none;padding-top:clamp(40px,6vw,72px);padding-bottom:80px;}
+  .detail-view.open{display:block;}
+  body.detail-open .layout{display:none;}
+
+  .detail-back{
+    display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);
+    margin-bottom:28px;padding:8px 0;transition:color .15s ease;
+  }
+  .detail-back:hover{color:var(--ink);}
+  .detail-back svg{width:15px;height:15px;flex:none;}
+
+  .detail-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,64px);align-items:start;}
+  .detail-visual-wrap{border:1px solid var(--line);background:#fff;border-radius:var(--radius);overflow:hidden;position:sticky;top:96px;}
+  .detail-visual-wrap svg, .detail-visual-wrap video{width:100%;display:block;background:#000;}
+  .detail-visual-wrap svg{background:none;}
+  .detail-visual-wrap iframe{width:100%;display:block;border:0;aspect-ratio:16/9;background:#000;}
+
+  .detail-tag{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);}
+  .detail-title{font-size:clamp(26px,3.4vw,38px);margin-top:10px;max-width:20ch;}
+  .detail-meta-row{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:20px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .detail-meta-item{display:flex;flex-direction:column;gap:4px;font-size:12.5px;}
+  .detail-meta-item .k{font-family:'IBM Plex Mono',monospace;color:var(--muted);font-size:11px;}
+  .detail-meta-item .v{color:var(--ink);font-weight:500;}
+
+  .detail-body{margin-top:22px;max-width:62ch;color:#2B2D34;font-size:15px;}
+  .detail-body p + p{margin-top:14px;}
+
+  .detail-stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+  .detail-stack span{font-size:13px;font-family:'IBM Plex Mono',monospace;color:var(--ink);border:1px solid var(--line);padding:6px 12px;border-radius:14px;background:#fff;}
+
+  .detail-list{margin-top:22px;display:flex;flex-direction:column;gap:10px;}
+  .detail-list li{font-size:14.5px;color:#2B2D34;padding-left:16px;position:relative;}
+  .detail-list li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;background:var(--accent);border-radius:50%;}
+
+  .detail-note{margin-top:22px;font-size:13px;color:var(--muted);font-style:italic;}
+  .detail-cta{margin-top:30px;}
+
+  @media (max-width:800px){
+    .detail-grid{grid-template-columns:1fr;}
+    .detail-visual-wrap{position:relative;top:0;}
+  }
+
+  /* responsive */
+  @media (max-width:880px){
+    .layout{grid-template-columns:1fr;}
+    body.detail-open .layout{display:grid;}
+    .profile{position:relative;top:0;padding-bottom:20px;border-bottom:1px solid var(--line);}
+    nav.section-nav{flex-direction:row;flex-wrap:wrap;gap:14px;}
+    nav.section-nav a{padding:4px 0;border-left:none;border-bottom:2px solid transparent;padding-left:0;}
+    nav.section-nav a:hover, nav.section-nav a.active{border-bottom-color:var(--accent);border-left:none;}
+    .journey-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:880px){
+    body.detail-open .profile{display:none;}
+  }
+  @media (max-width:600px){
+    .video-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:520px){
+    .topbar .cta-small{display:none;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .avatar{animation:none;}
+    .project-card{transition:none;}
+  }
+</style>
 </head>
+<body>
 
+<header class="topbar">
+  <div class="logo"><span class="dot"></span>Adi Putra</div>
+  <div class="topbar-right">
+    <div class="lang-switch" role="group" aria-label="Language switch">
+      <button type="button" data-lang="id" aria-pressed="true">ID</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="cta-small" href="https://api.whatsapp.com/send/?phone=6285707038940&text&type=phone_number&app_absent=0" target="_blank" rel="noopener">
+      <svg class="icon-16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.24 2 11.5c0 1.98.63 3.82 1.71 5.35L2.5 21.5l4.86-1.28A10.4 10.4 0 0 0 12 21c5.52 0 10-4.24 10-9.5S17.52 2 12 2Zm0 17.2c-1.6 0-3.09-.46-4.35-1.25l-.31-.19-2.88.76.77-2.8-.2-.29A7.77 7.77 0 0 1 3.9 11.5C3.9 7.3 7.53 3.9 12 3.9s8.1 3.4 8.1 7.6-3.63 7.7-8.1 7.7Zm4.46-5.73c-.24-.12-1.44-.71-1.67-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.39-1.31-1.63-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.47-.4-.4-.55-.41h-.47c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03s.87 2.36.99 2.52c.12.16 1.71 2.6 4.14 3.65.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/></svg>
+      <span data-i18n="nav.contact">Hubungi Saya</span>
+    </a>
+  </div>
+</header>
 
-<body class="template-color-1 home-sticky spybody" data-spy="scroll" data-target=".navbar-example2" data-offset="150">
-    <main class="main-page-wrapper">
-  
-        <div class="rn-slider-area">
-            <div class="container">
-                <div class="row row--30 pt--100 pt_sm--50">
-                    <div class="col-lg-6">
-                        <div class="d-flex flex-wrap align-content-start h-100">
-                            <div class="sticky-top-slider position-sticky sticky-top rbt-sticky-top-adjust-two">
-                                <div class="banner-details-wrapper-sticky slide">
-                                    <div class="thumbnail">
-                                        <img src="assets/images/slider/adi.jpg" alt="Personal Portfolio">
-                                    </div>
-                                    <div class="banner-title-area pt--30">
-                                        <h1 class="title">Hi, I’m <span>Adi Putra</span><br><span
-                                                class="span"> Web & Software
-                                                Developer.</span></h1>
-                                        <p class="disc">Web Developer | FrontEnd Web Developer | Software Developer</p>
-                                    </div>
-                                    <div class="button-group text-center text-md-start pt--60 pt_md--40 pt_sm--40">
-                                        <a class="rn-btn" href="https://api.whatsapp.com/send/?phone=6285707038940&text&type=phone_number&app_absent=0"><span>Contact Me</span></a>
-                                      
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="sticky-home-wrapper">
+<div class="wrap">
+  <div class="layout">
 
-                            <!-- about area -->
-                            <div class="rn-about-area section-height">
-                                <div class="inner">
-                                    <h5 class="title">
-                                        About Me
-                                    </h5>
-                                    <p class="about-disc" style="text-align: justify;">
-                                        I am an Informatics Engineering student with a strong passion for technology, problem-solving, and software development. Over the past 1.5 years, I have gained valuable experience in web development, successfully completing three major projects. My most recent work involves integrating IoT technology to classify egg quality, showcasing my ability to combine software with innovative solutions.
+    <!-- profile -->
+    <aside class="profile">
+      <div class="avatar">AP</div>
+      <div>
+        <h1 data-i18n="hero.name">Adi Putra</h1>
+        <!-- <p class="role" data-i18n="hero.role">Web &amp; Software Developer</p> -->
+      </div>
 
-                                    </p>
-                                    <p class="about-disc" style="text-align: justify;">
+      <div class="meta">
+        <span><span class="k" data-i18n="meta.status.k">Status</span> — <span data-i18n="meta.status.v">Lulusan D4 Teknik Informatika</span></span>
+        <span><span class="k" data-i18n="meta.focus.k">Fokus</span> — <span data-i18n="meta.focus.v">Pengembangan Frontend &amp; IoT</span></span>
+        <span><span class="k" data-i18n="meta.base.k">Domisili</span> — Indonesia</span>
+      </div>
 
-                                        Beyond web development, I have also spent a year developing desktop software designed to help manage a small grocery store, improving efficiency and organization. I am always eager to learn new technologies, expand my skills, and collaborate with teams to create meaningful and impactful solutions. With a keen eye for detail and a drive for continuous improvement, I look forward to contributing to projects that make a difference.
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- about area end -->
+      <div class="profile-actions">
+        <a class="btn-primary" href="https://api.whatsapp.com/send/?phone=6285707038940&text&type=phone_number&app_absent=0" target="_blank" rel="noopener">
+          <svg class="icon-16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.24 2 11.5c0 1.98.63 3.82 1.71 5.35L2.5 21.5l4.86-1.28A10.4 10.4 0 0 0 12 21c5.52 0 10-4.24 10-9.5S17.52 2 12 2Zm0 17.2c-1.6 0-3.09-.46-4.35-1.25l-.31-.19-2.88.76.77-2.8-.2-.29A7.77 7.77 0 0 1 3.9 11.5C3.9 7.3 7.53 3.9 12 3.9s8.1 3.4 8.1 7.6-3.63 7.7-8.1 7.7Zm4.46-5.73c-.24-.12-1.44-.71-1.67-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.39-1.31-1.63-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.47-.4-.4-.55-.41h-.47c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03s.87 2.36.99 2.52c.12.16 1.71 2.6 4.14 3.65.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/></svg>
+          <span data-i18n="hero.cta">Hubungi via WhatsApp</span>
+        </a>
+        <a class="btn-secondary" href="mailto:kholisabdullahadiputra@gmail.com">
+          <svg class="icon-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>
+          <span data-i18n="hero.mail">Email Saya</span>
+        </a>
+      </div>
 
-                     
-                            <div class="rn-skill-area section-height">
-                                <div class="inner slide">
-                                    <h5 class="title">
-                                        About My Skill
-                                    </h5>
-                                    <div class="skill-share-inner pt--100">
-                                        <span class="title">Primary Skills on</span>
-                                        <ul class="skill-share d-flex liststyle">
-                                            <li><img src="assets/images/icons/php.png" alt="Icons Images"></li>
-                                            <li><img src="assets/images/icons/html-5.png" alt="Icons Images"></li>
-                                            <li><img src="assets/images/icons/css-3.png" alt="Icons Images"></li>
-                                            <li><img src="assets/images/icons/js.png" alt="Icons Images"></li>
-                                            <li><img src="assets/images/icons/figma.png" alt="Icons Images"></li>
-                                            <li><img src="assets/images/icons/mysql.png" alt="Icons Images"></li>
-                                        </ul>
-                                    </div>
-                                    <div class="skill-share-inner skill-share-inner-width margin-top-25">
-                                        <span class="title">Secondary Skills on</span>
-                                        <ul class="skill-share d-flex liststyle">
-                                            <li><img src="assets/images/icons/react.png" alt="Icons Images"></li>
-                                            <li><img src="assets/images/icons/laravel.png" alt="Icons Images"></li>
-                                            <li><img src="assets/images/icons/codeigniter.png" alt="Icons Images"></li>
-                                            <li><img src="assets/images/icons/node-js.png" alt="Icons Images"></li>
-                                            <li><img src="assets/images/icons/vue.png" alt="Icons Images"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            
+      <nav class="section-nav" aria-label="Section navigation">
+        <a href="#about" data-i18n="nav.about">Tentang</a>
+        <a href="#skills" data-i18n="nav.skills">Keahlian</a>
+        <a href="#projects" data-i18n="nav.projects">Proyek</a>
+        <a href="#certificates" data-i18n="nav.certificates">Sertifikat</a>
+        <a href="#content" data-i18n="nav.content">Konten</a>
+        <a href="#education" data-i18n="nav.education">Pendidikan</a>
+        <a href="#experience" data-i18n="nav.experience">Pengalaman</a>
+        <a href="#contact" data-i18n="nav.contactSection">Kontak</a>
+      </nav>
+    </aside>
 
-                      
-                            <div data-aos="fade-left" data-aos-duration="500" data-aos-delay="200" data-aos-once="true" class="rn-skill-area single-card-sticky section-height">
-                                <div class="inner">
-                                    <h5 class="title">
-                                        My Certificate
-                                    </h5>
-                                    <ul class="card-list">
-                                        <li><a href="#">in progress <i data-feather="arrow-right"></i></a></li>
-                                        <li><a href="#">in progress <i data-feather="arrow-right"></i></a></li>
-                                        <li><a href="#">in progress <i data-feather="arrow-right"></i></a></li>
-                                        <li><a href="#">in progress <i data-feather="arrow-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        
+    <!-- konten -->
+    <div class="content">
 
-                            
-                            <div data-aos="fade-left" data-aos-duration="500" data-aos-delay="200" data-aos-once="true" class="rn-portfolio-area single-card-sticky section-height">
-                                <div class="inner">
-                                    <h5 class="title">
-                                        My Education
-                                    </h5>
-                                    <ul class="card-list">
-                                        <li><a href="#">in progress<i data-feather="arrow-right"></i></a></li>
-                                        <li><a href="#">in progress<i data-feather="arrow-right"></i></a></li>
-                                        <li><a href="#">in progress<i data-feather="arrow-right"></i></a></li>
-                                        <li><a href="#">in progress<i data-feather="arrow-right"></i></a></li>
-
-
-                                    </ul>
-                                </div>
-                            </div>
-                       
-
-                      
-                            <div data-aos="fade-left" data-aos-duration="500" data-aos-delay="200" data-aos-once="true" class="rn-blog-area single-card-sticky section-height">
-                                <div class="inner">
-                                    <h5 class="title">
-                                        My Experience
-                                    </h5>
-                                    <ul class="card-list">
-                                        <li><a href="#">in progress<i data-feather="arrow-right"></i></a></li>
-                                        <li><a href="#">in progress<i data-feather="arrow-right"></i></a></li>
-                                        <li><a href="#">in progress<i data-feather="arrow-right"></i></a></li>
-                                        <li><a href="#">in progress<i data-feather="arrow-right"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                           
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <section id="about">
+        <h2 class="section-heading" data-i18n="about.heading">Tentang saya</h2>
+        <div class="prose">
+          <p data-i18n="about.p1">Saya adalah lulusan Diploma IV Teknik Informatika dengan minat besar pada pengembangan perangkat lunak, khususnya aplikasi berbasis web. Selama masa perkuliahan, saya mengerjakan berbagai proyek yang memberikan pengalaman sekitar 1,5 tahun dalam pengembangan website, termasuk sistem berbasis web terintegrasi Internet of Things (IoT) untuk klasifikasi kualitas telur serta aplikasi desktop untuk pengelolaan operasional toko kelontong. Saya memiliki keahlian pada pengembangan frontend dengan pemahaman backend yang baik, sehingga mampu membangun antarmuka yang responsif sekaligus mengimplementasikan logika aplikasi sesuai kebutuhan.</p>
+          <p data-i18n="about.p2">Selain kemampuan teknis, saya memiliki pengalaman sebagai Bendahara BOSP di SMP Nurul Huda II dan pernah menjalani magang sebagai Backend Developer di PT Wesclic Indonesia Neotech, Yogyakarta. Pengalaman tersebut mengasah kemampuan saya dalam administrasi, pengelolaan data, ketelitian, koordinasi, serta pengembangan sisi backend aplikasi. Saya memiliki semangat belajar tinggi, mudah beradaptasi, dan siap berkontribusi dalam pengembangan solusi digital maupun operasional organisasi.</p>
         </div>
-        <!-- End slider area -->
+      </section>
 
-        <!-- Back to  top Start -->
-        <div class="backto-top">
-            <div>
-                <i data-feather="arrow-up"></i>
-            </div>
+      <section id="skills">
+        <h2 class="section-heading" data-i18n="skills.heading">Keahlian</h2>
+
+        <div class="skill-group">
+          <span class="label mono" data-i18n="skills.primary">Keahlian utama</span>
+          <div class="tag-row">
+            <span class="tag primary">PHP</span>
+            <span class="tag primary">HTML5</span>
+            <span class="tag primary">CSS3</span>
+            <span class="tag primary">JavaScript</span>
+            <span class="tag primary">Figma</span>
+            <span class="tag primary">MySQL</span>
+          </div>
         </div>
-        <!-- Back to top end -->
-        <!-- Start Right Demo  -->
-        <div class="rn-right-demo">
-            <button class="demo-button">
-                <span class="text">My Projects</span>
+
+        <div class="skill-group">
+          <span class="label mono" data-i18n="skills.secondary">Keahlian pendukung</span>
+          <div class="tag-row">
+            <span class="tag">React</span>
+            <span class="tag">Laravel</span>
+            <span class="tag">CodeIgniter</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Vue.js</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2 class="section-heading" data-i18n="projects.heading">Proyek</h2>
+        <div class="project-grid">
+
+            <button class="project-card" data-detail="project:p3" aria-haspopup="dialog">
+<img
+    class="project-thumb"
+    src="assets/images/pictures/simarko.png"
+    alt="Website development project screenshot"
+    loading="lazy"
+  />
+            <div class="card-body">
+              <span class="tag-line" data-i18n="proj3.tag">Web Development</span>
+              <h3 data-i18n="proj3.title">Proyek Pengembangan Website</h3>
+              <p data-i18n="proj3.desc">Salah satu proyek web yang dikerjakan selama masa perkuliahan, dari perancangan antarmuka hingga implementasi front-end &amp; back-end.</p>
+              <div class="stack"><span>JavaScript</span><span>Laravel</span></div>
+            </div>
+          </button>
+
+          <button class="project-card" data-detail="project:p2" aria-haspopup="dialog">
+<img
+    class="project-thumb"
+    src="assets/images/pictures/daiko.jpg"
+    alt="Grocery store desktop app screenshot"
+    loading="lazy"
+  />
+            <div class="card-body">
+              <span class="tag-line" data-i18n="proj2.tag">Desktop App</span>
+              <h3 data-i18n="proj2.title">Manajemen Toko Kelontong</h3>
+              <p data-i18n="proj2.desc">Software desktop untuk mencatat stok, transaksi, dan laporan penjualan toko kelontong kecil.</p>
+              <div class="stack"><span>Desktop</span><span>MySQL</span></div>
+            </div>
+          </button>
+
+          <button class="project-card" data-detail="project:p1" aria-haspopup="dialog">
+            <img
+    class="project-thumb"
+    src="assets/images/pictures/eggrade2.png"
+    alt="Egg quality classification IoT dashboard screenshot"
+    loading="lazy"
+  />
+            <div class="card-body">
+              <span class="tag-line" data-i18n="proj1.tag">IoT · Web Dashboard</span>
+              <h3 data-i18n="proj1.title">Klasifikasi Kualitas Telur</h3>
+              <p data-i18n="proj1.desc">Sistem yang memadukan sensor IoT dengan dashboard web untuk mengklasifikasikan kualitas telur secara otomatis.</p>
+              <div class="stack"><span>PHP</span><span>MySQL</span><span>IoT</span></div>
+            </div>
+          </button>
+
+        </div>
+      </section>
+
+      <section id="certificates">
+        <h2 class="section-heading" data-i18n="certificates.heading">Sertifikat</h2>
+        <div class="prose">
+          <p data-i18n="certificates.intro">Contoh tampilan sertifikat masih berupa dummy dan akan diganti begitu sertifikat resmi terbit.</p>
+        </div>
+        <div class="cert-grid">
+
+          <button class="cert-card" data-detail="cert:c1" aria-haspopup="dialog">
+           <img
+    class="project-thumb"
+    src="assets/images/pictures/ujikom.png"
+    alt="Web development certificate placeholder"
+    loading="lazy"
+  />
+            <div class="cert-body">
+              <h3 data-i18n="cert1.title">Sertifikat Web Development</h3>
+              <p data-i18n="cert1.issuer">Contoh dummy — belum diterbitkan</p>
+            </div>
+          </button>
+
+          <button class="cert-card" data-detail="cert:c2" aria-haspopup="dialog">
+           <img
+    class="project-thumb"
+    src="assets/images/pictures/data-science.png"
+    alt="IoT and embedded systems certificate placeholder"
+    loading="lazy"
+  />
+            <div class="cert-body">
+              <h3 data-i18n="cert2.title">Sertifikat IoT &amp; Embedded System</h3>
+              <p data-i18n="cert2.issuer">Contoh dummy — belum diterbitkan</p>
+            </div>
+          </button>
+
+        </div>
+        <p class="placeholder-note" data-i18n="certificates.note">Sertifikat asli akan ditambahkan setelah selesai diproses.</p>
+      </section>
+
+      <section id="content">
+        <h2 class="section-heading" data-i18n="content.heading">Portofolio Konten</h2>
+        <div class="prose">
+          <p data-i18n="content.intro">Contoh konten media sosial berikut adalah versi dummy untuk menunjukkan format &amp; gaya visual yang biasa saya buat — video dan desain aslinya menyusul.</p>
+        </div>
+
+        <div class="content-sub">
+          <h3 data-i18n="content.videoHeading">Video konten media sosial</h3>
+          <div class="video-grid">
+
+            <button class="video-card" data-detail="video:v1" aria-haspopup="dialog">
+             <div class="video-thumb ratio-16-9">
+  <iframe
+    src="https://www.youtube.com/embed/KOXxbgqXYSE"
+    title="YouTube video player - Promosi Web Klasifikasi Telur"
+    loading="lazy"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</div>
+              <div class="video-info">
+                <p class="v-title" data-i18n="video1.title">Promosi Web Klasifikasi Telur</p>
+                <p class="v-meta mono" data-i18n="video1.meta">YouTube</p>
+              </div>
             </button>
-        </div>
-        <!-- End Right Demo  -->
 
-        <!-- Start Modal Area  -->
-        <div class="demo-modal-area">
-            <div class="wrapper">
-                <div class="close-icon">
-                    <button class="demo-close-btn"><span class="feather-x"></span></button>
-                </div>
-                <div class="rn-modal-inner">
-                    <div class="demo-top text-center">
-                        <h4 class="title">My Projects</h4>
-                        <p class="subtitle">These are my projects that i have created before.</p>
-                    </div>
-                    <!-- <ul class="popuptab-area nav nav-tabs" id="popuptab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active demo-dark" id="demodark-tab" data-bs-toggle="tab" href="#demodark" role="tab" aria-controls="demodark" aria-selected="true">Dark Demo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link demo-light" id="demolight-tab" data-bs-toggle="tab" href="#demolight" role="tab" aria-controls="demolight" aria-selected="false">Light Demo</a>
-                        </li>
-                    </ul> -->
-                    <div class="tab-content" id="popuptabContent">
-                        <div class="tab-pane show active" id="demodark" role="tabpanel" aria-labelledby="demodark-tab">
-                            <div class="content">
-                                <div class="row">
+            <button class="video-card" data-detail="video:v2" aria-haspopup="dialog">
+              <div class="video-thumb">
+                <video preload="metadata" muted playsinline>
+                  <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/friday.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="video-info">
+                <p class="v-title" data-i18n="video2.title">Behind the Scenes: Dashboard IoT</p>
+                <p class="v-meta mono" data-i18n="video2.meta">Dummy · TikTok</p>
+              </div>
+            </button>
 
-                                    <!-- Start Single Content  -->
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="single-demo">
-                                            <div class="inner">
-                                                <div class="thumbnail">
-                                                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-                                                        <img class="w-100" src="assets/images/demo/thumbnail.png" alt="Personal Portfolio">
-                                                        <span class="overlay-content">
-                                                    <span class="overlay-text">View Demo <i
-                                                            class="feather-external-link"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="inner">
-                                                    <h3 class="title">Projects</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Content  -->
+            <button class="video-card" data-detail="video:v3" aria-haspopup="dialog">
+              <div class="video-thumb">
+                <video preload="metadata" muted playsinline>
+                  <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/octopus.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="video-info">
+                <p class="v-title" data-i18n="video3.title">Setup Laravel dalam 60 Detik</p>
+                <p class="v-meta mono" data-i18n="video3.meta">Dummy · Shorts</p>
+              </div>
+            </button>
 
-
-                                    <!-- Start Single Content  -->
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="single-demo">
-                                            <div class="inner badge-2">
-                                                <div class="thumbnail">
-                                                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-                                                        <img class="w-100" src="assets/images/demo/thumbnail.png" alt="Personal Portfolio">
-                                                        <span class="overlay-content">
-                                                    <span class="overlay-text">View Demo <i
-                                                            class="feather-external-link"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="inner">
-                                                    <h3 class="title">Projects</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Content  -->
-
-                                    <!-- Start Single Content  -->
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="single-demo">
-                                            <div class="inner badge-2">
-                                                <div class="thumbnail">
-                                                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                                                        <img class="w-100" src="assets/images/demo/thumbnail.png" alt="Personal Portfolio">
-                                                        <span class="overlay-content">
-                                                    <span class="overlay-text">View Demo <i
-                                                            class="feather-external-link"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="inner">
-                                                    <h3 class="title">Projects</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Content  -->
-
-                                    <!-- Start Single Content  -->
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="single-demo">
-                                            <div class="inner badge-1">
-                                                <div class="thumbnail">
-                                                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
-                                                        <img class="w-100" src="assets/images/demo/thumbnail.png" alt="Personal Portfolio">
-                                                        <span class="overlay-content">
-                                                    <span class="overlay-text">View Demo <i
-                                                            class="feather-external-link"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="inner">
-                                                    <h3 class="title">Projects</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Content  -->
-
-                                    <!-- Start Single Content  -->
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="single-demo">
-                                            <div class="inner badge-1">
-                                                <div class="thumbnail">
-                                                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
-                                                        <img class="w-100" src="assets/images/demo/thumbnail.png" alt="Personal Portfolio">
-                                                        <span class="overlay-content">
-                                                    <span class="overlay-text">View Demo <i
-                                                            class="feather-external-link"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="inner">
-                                                    <h3 class="title">Projects</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Content  -->
-
-                                    <!-- Start Single Content  -->
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="single-demo">
-                                            <div class="inner">
-                                                <div class="thumbnail">
-                                                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
-                                                        <img class="w-100" src="assets/images/demo/thumbnail.png" alt="Personal Portfolio">
-                                                        <span class="overlay-content">
-                                                    <span class="overlay-text">View Demo <i
-                                                            class="feather-external-link"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="inner">
-                                                    <h3 class="title">Projects</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Content  -->
-
-                                    <!-- Start Single Content  -->
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="single-demo">
-                                            <div class="inner">
-                                                <div class="thumbnail">
-                                                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal7">
-                                                        <img class="w-100" src="assets/images/demo/thumbnail.png" alt="Personal Portfolio">
-                                                        <span class="overlay-content">
-                                                    <span class="overlay-text">View Demo <i
-                                                            class="feather-external-link"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="inner">
-                                                    <h3 class="title">Projects</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Content  -->
-                                    <!-- Start Single Content  -->
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="single-demo">
-                                            <div class="inner badge-1">
-                                                <div class="thumbnail">
-                                                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal8">
-                                                        <img class="w-100" src="assets/images/demo/thumbnail.png" alt="Personal Portfolio">
-                                                        <span class="overlay-content">
-                                                    <span class="overlay-text">View Demo <i
-                                                            class="feather-external-link"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="inner">
-                                                    <h3 class="title">Projects</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Content  -->
-
-                                    <!-- Start Single Content  -->
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="single-demo">
-                                            <div class="inner">
-                                                <div class="thumbnail">
-                                                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal9">
-                                                        <img class="w-100" src="assets/images/demo/thumbnail.png" alt="Personal Portfolio">
-                                                        <span class="overlay-content">
-                                                    <span class="overlay-text">View Demo <i
-                                                            class="feather-external-link"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="inner">
-                                                    <h3 class="title">Projects</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Content  -->
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="tab-pane" id="demolight" role="tabpanel" aria-labelledby="demolight-tab">
-                            <div class="content">
-                                <div class="row">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
 
+        <div class="content-sub">
+          <h3 data-i18n="content.posterHeading">Flyer &amp; poster media sosial</h3>
+          <div class="poster-grid">
 
-        <!-- Portfolio Modal  -->
+            <button class="poster-card" data-detail="poster:po1" aria-haspopup="dialog">
+              <img
+    class="project-thumb"
+    src="assets/images/pictures/poster.jpeg"
+    alt="Website service promotion poster"
+    loading="lazy"
+  />
+              <div class="poster-info">
+                <p class="p-title" data-i18n="poster1.title">Promo Jasa Pembuatan Website</p>
+                <p class="p-meta" data-i18n="poster1.meta">Dummy · Feed Instagram</p>
+              </div>
+            </button>
 
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/images/icons/close.svg" style="cursor: pointer;" alt="close" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name1</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <button class="poster-card" data-detail="poster:po2" aria-haspopup="dialog">
+                     <img
+    class="project-thumb"
+    src="assets/images/pictures/poster-exhib.jpeg"
+    alt="Free coding workshop poster"
+    loading="lazy"
+  />
+              <div class="poster-info">
+                <p class="p-title" data-i18n="poster2.title">Workshop Coding Gratis</p>
+                <p class="p-meta" data-i18n="poster2.meta">Dummy · Story Instagram</p>
+              </div>
+            </button>
+
+            <button class="poster-card" data-detail="poster:po3" aria-haspopup="dialog">
+                     <img
+    class="project-thumb"
+    src="assets/images/pictures/banner-coklat.jpeg"
+    alt="Online store grand launch poster"
+    loading="lazy"
+  />
+              <div class="poster-info">
+                <p class="p-title" data-i18n="poster3.title">Grand Launching Toko Online</p>
+                <p class="p-meta" data-i18n="poster3.meta">Dummy · Feed Instagram</p>
+              </div>
+            </button>
+
           </div>
+        </div>
+      </section>
 
+      <section id="education">
+        <h2 class="section-heading" data-i18n="education.heading">Pendidikan</h2>
+        <div class="journey-grid">
 
-          <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/images/icons/close.svg" style="cursor: pointer;" alt="close" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name2</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <button class="journey-card" data-detail="edu:edu1" aria-haspopup="dialog">
+            <svg class="journey-visual" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Education illustration">
+              <rect width="400" height="300" fill="#EDF1FF"/>
+              <path d="M200 90 L320 130 L200 170 L80 130 Z" fill="#fff" stroke="#3552FF" stroke-width="2"/>
+              <path d="M140 148 V196 C140 210 260 210 260 196 V148" fill="none" stroke="#3552FF" stroke-width="2"/>
+              <path d="M320 130 V178" stroke="#3552FF" stroke-width="2"/>
+              <circle cx="320" cy="184" r="4" fill="#3552FF"/>
+              <rect x="150" y="220" width="100" height="10" rx="5" fill="#C9D3F7"/>
+              <rect x="170" y="238" width="60" height="8" rx="4" fill="#DCE2FA"/>
+            </svg>
+            <div class="journey-body">
+              <h3 data-i18n="journey.edu.title">Diploma IV Teknik Informatika</h3>
+              <ul>
+                <li data-i18n="journey.edu.item">Lulus — fokus pengembangan web &amp; IoT</li>
+              </ul>
+              <p class="journey-note" data-i18n="journey.note">Segera diperbarui</p>
             </div>
-          </div>
+          </button>
 
+        </div>
+      </section>
 
-          <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/images/icons/close.svg" style="cursor: pointer;" alt="close" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name3</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <section id="experience">
+        <h2 class="section-heading" data-i18n="experience.heading">Pengalaman</h2>
+        <div class="journey-grid">
+
+          <button class="journey-card" data-detail="exp:exp1" aria-haspopup="dialog">
+            <svg class="journey-visual" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Web development experience illustration">
+              <rect width="400" height="300" fill="#F1F0EA"/>
+              <rect x="130" y="110" width="140" height="100" rx="8" fill="#fff" stroke="#15161B" stroke-width="2"/>
+              <path d="M170 110 V96 C170 88 178 82 186 82 H214 C222 82 230 88 230 96 V110" fill="none" stroke="#15161B" stroke-width="2"/>
+              <rect x="130" y="150" width="140" height="10" fill="#3552FF" opacity="0.85"/>
+              <circle cx="200" cy="155" r="7" fill="#fff" stroke="#15161B" stroke-width="1.5"/>
+              <circle cx="90" cy="220" r="4" fill="#3552FF"/>
+              <circle cx="140" cy="220" r="4" fill="#DCDBD3"/>
+              <circle cx="190" cy="220" r="4" fill="#DCDBD3"/>
+              <circle cx="240" cy="220" r="4" fill="#DCDBD3"/>
+              <path d="M90 220 H240" stroke="#E1E0D9" stroke-width="1.5" stroke-dasharray="3 5"/>
+            </svg>
+            <div class="journey-body">
+              <h3 data-i18n="journey.exp1.title">Magang Backend Developer</h3>
+              <ul>
+                <li data-i18n="journey.exp.item1">PT Wesclic Indonesia Neotech, Yogyakarta</li>
+              </ul>
+              <p class="journey-note" data-i18n="journey.note">Segera diperbarui</p>
             </div>
-          </div>
+          </button>
 
-
-          <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/images/icons/close.svg" style="cursor: pointer;" alt="close" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name 4</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <button class="journey-card" data-detail="exp:exp2" aria-haspopup="dialog">
+            <svg class="journey-visual" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Desktop software experience illustration">
+              <rect width="400" height="300" fill="#EDF1FF"/>
+              <rect x="110" y="90" width="180" height="120" rx="8" fill="#fff" stroke="#3552FF" stroke-width="2"/>
+              <rect x="126" y="106" width="148" height="14" rx="3" fill="#E9EDFF"/>
+              <rect x="126" y="130" width="90" height="10" rx="3" fill="#C9D3F7"/>
+              <rect x="126" y="150" width="148" height="1" fill="#DCE2FA"/>
+              <rect x="126" y="164" width="120" height="10" rx="3" fill="#C9D3F7"/>
+              <rect x="126" y="184" width="70" height="10" rx="5" fill="#3552FF"/>
+              <rect x="170" y="210" width="60" height="14" fill="#B9C4F2"/>
+              <rect x="150" y="224" width="100" height="8" rx="4" fill="#DCE2FA"/>
+            </svg>
+            <div class="journey-body">
+              <h3 data-i18n="journey.exp2.title">Bendahara BOSP</h3>
+              <ul>
+                <li data-i18n="journey.exp.item2">SMP Nurul Huda II</li>
+              </ul>
+              <p class="journey-note" data-i18n="journey.note">Segera diperbarui</p>
             </div>
-          </div>
+          </button>
 
+        </div>
+      </section>
 
-          <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/images/icons/close.svg" style="cursor: pointer;" alt="close" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name 5</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
+      <section id="contact">
+        <h2 class="section-heading" data-i18n="contact.heading">Mari terhubung</h2>
+        <div class="prose">
+          <p data-i18n="contact.p">Terbuka untuk kolaborasi, magang, maupun proyek freelance. Kirim pesan dan saya akan membalas secepatnya.</p>
+        </div>
+        <div class="contact-row">
+          <a class="btn-primary" href="https://api.whatsapp.com/send/?phone=6285707038940&text&type=phone_number&app_absent=0" target="_blank" rel="noopener">
+            <svg class="icon-16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.24 2 11.5c0 1.98.63 3.82 1.71 5.35L2.5 21.5l4.86-1.28A10.4 10.4 0 0 0 12 21c5.52 0 10-4.24 10-9.5S17.52 2 12 2Zm0 17.2c-1.6 0-3.09-.46-4.35-1.25l-.31-.19-2.88.76.77-2.8-.2-.29A7.77 7.77 0 0 1 3.9 11.5C3.9 7.3 7.53 3.9 12 3.9s8.1 3.4 8.1 7.6-3.63 7.7-8.1 7.7Zm4.46-5.73c-.24-.12-1.44-.71-1.67-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.39-1.31-1.63-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.47-.4-.4-.55-.41h-.47c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03s.87 2.36.99 2.52c.12.16 1.71 2.6 4.14 3.65.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/></svg>
+            <span data-i18n="contact.whatsapp">WhatsApp</span>
+          </a>
+          <a class="btn-secondary" href="mailto:kholisabdullahadiputra@gmail.com">
+            <svg class="icon-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>
+            <span>kholisabdullahadiputra@gmail.com</span>
+          </a>
+        </div>
+      </section>
 
+    </div>
+  </div>
 
-          <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/images/icons/close.svg" style="cursor: pointer;" alt="close" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name 6</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
+  <!-- halaman detail -->
+  <div class="detail-view" id="detailView">
+    <a href="#" class="detail-back" id="detailBack">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      <span id="detailBackLabel">Kembali</span>
+    </a>
+    <div class="detail-grid">
+      <div class="detail-visual-wrap" id="detailVisualWrap"></div>
+      <div>
+        <span class="detail-tag" id="detailTag"></span>
+        <h1 class="detail-title" id="detailTitle"></h1>
+        <div class="detail-meta-row" id="detailMetaRow"></div>
+        <div class="detail-body" id="detailBody"></div>
+        <div class="detail-stack" id="detailStack"></div>
+        <ul class="detail-list" id="detailList"></ul>
+        <p class="detail-note" id="detailNote"></p>
+        <div class="detail-cta" id="detailCta"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<footer>
+  <div class="wrap">
+    <span data-i18n="footer.rights">© 2026 Adi Putra.</span>
+    <!-- <span data-i18n="footer.made">Dibangun dengan HTML, CSS &amp; JavaScript.</span> -->
+  </div>
+</footer>
 
-          <div class="portfolio-modal modal fade" id="portfolioModal7" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/images/icons/close.svg" style="cursor: pointer;" alt="close" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name 7</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
+<script>
+(function(){
+  const translations = {
+    id:{
+      "nav.contact":"Hubungi Saya",
+      "nav.about":"Tentang",
+      "nav.skills":"Keahlian",
+      "nav.projects":"Proyek",
+      "nav.certificates":"Sertifikat",
+      "nav.content":"Konten",
+      "nav.education":"Pendidikan",
+      "nav.experience":"Pengalaman",
+      "nav.contactSection":"Kontak",
+      "hero.name":"Adi Putra",
+      "hero.role":"Web & Software Developer",
+      "hero.cta":"Hubungi via WhatsApp",
+      "hero.mail":"Email Saya",
+      "meta.status.k":"Status",
+      "meta.status.v":"Lulusan D4 Teknik Informatika",
+      "meta.focus.k":"Fokus",
+      "meta.focus.v":"Pengembangan Frontend & IoT",
+      "meta.base.k":"Domisili",
+      "about.heading":"Tentang saya",
+      "about.p1":"Saya adalah lulusan Diploma IV Teknik Informatika dengan minat besar pada pengembangan perangkat lunak, khususnya aplikasi berbasis web. Selama masa perkuliahan, saya mengerjakan berbagai proyek yang memberikan pengalaman sekitar 1,5 tahun dalam pengembangan website, termasuk sistem berbasis web terintegrasi Internet of Things (IoT) untuk klasifikasi kualitas telur serta aplikasi desktop untuk pengelolaan operasional toko kelontong. Saya memiliki keahlian pada pengembangan frontend dengan pemahaman backend yang baik, sehingga mampu membangun antarmuka yang responsif sekaligus mengimplementasikan logika aplikasi sesuai kebutuhan.",
+      "about.p2":"Selain kemampuan teknis, saya memiliki pengalaman sebagai Bendahara BOSP di SMP Nurul Huda II dan pernah menjalani magang sebagai Backend Developer di PT Wesclic Indonesia Neotech, Yogyakarta. Pengalaman tersebut mengasah kemampuan saya dalam administrasi, pengelolaan data, ketelitian, koordinasi, serta pengembangan sisi backend aplikasi. Saya memiliki semangat belajar tinggi, mudah beradaptasi, dan siap berkontribusi dalam pengembangan solusi digital maupun operasional organisasi.",
+      "skills.heading":"Keahlian",
+      "skills.primary":"Keahlian utama",
+      "skills.secondary":"Keahlian pendukung",
+      "projects.heading":"Proyek",
+      "proj1.tag":"IoT · Web Dashboard",
+      "proj1.title":"Klasifikasi Kualitas Telur",
+      "proj1.desc":"Sistem yang memadukan sensor IoT dengan dashboard web untuk mengklasifikasikan kualitas telur secara otomatis.",
+      "proj1.full":"Proyek ini menggabungkan perangkat IoT untuk membaca kondisi telur dengan dashboard web yang menampilkan hasil klasifikasi secara real-time, membantu proses sortir menjadi lebih cepat dan akurat. Sensor pada perangkat keras membaca indikator kualitas telur, lalu data tersebut dikirim ke server dan diproses menjadi kategori kualitas yang mudah dibaca operator melalui dashboard.",
+      "proj1.role":"Peran",
+      "proj1.roleVal":"Frontend developer dengan pemahaman backend",
+      "proj1.duration":"Durasi",
+      "proj1.durationVal":"± 4 bulan",
+      "proj1.category":"Kategori",
+      "proj2.tag":"Desktop App",
+      "proj2.title":"Manajemen Toko Kelontong",
+      "proj2.desc":"Software desktop untuk mencatat stok, transaksi, dan laporan penjualan toko kelontong kecil.",
+      "proj2.full":"Dikembangkan selama satu tahun untuk membantu pemilik toko kelontong mencatat stok barang, transaksi harian, dan menghasilkan laporan penjualan secara otomatis, menggantikan pencatatan manual. Aplikasi ini dirancang agar mudah digunakan oleh pengguna non-teknis sehari-hari.",
+      "proj2.role":"Peran",
+      "proj2.roleVal":"Software developer",
+      "proj2.duration":"Durasi",
+      "proj2.durationVal":"1 tahun",
+      "proj2.category":"Kategori",
+      "proj3.tag":"Web Development",
+      "proj3.title":"Proyek Pengembangan Website",
+      "proj3.desc":"Salah satu proyek web yang dikerjakan selama masa perkuliahan, dari perancangan antarmuka hingga implementasi front-end & back-end.",
+      "proj3.full":"Bagian dari proyek web yang saya kerjakan selama masa perkuliahan, mencakup perancangan antarmuka di Figma, implementasi front-end, dan koneksi ke back-end serta database. Proyek ini memperkuat keahlian saya dalam membangun antarmuka yang responsif sekaligus mengimplementasikan logika aplikasi sesuai kebutuhan.",
+      "proj3.role":"Peran",
+      "proj3.roleVal":"Frontend developer dengan pemahaman backend",
+      "proj3.duration":"Durasi",
+      "proj3.durationVal":"± 3 bulan",
+      "proj3.category":"Kategori",
+      "detail.category":"Kategori",
+      "detail.stack":"Teknologi",
+      "detail.backProjects":"Kembali ke Proyek",
+      "detail.backCerts":"Kembali ke Sertifikat",
+      "detail.backContent":"Kembali ke Konten",
+      "detail.backEducation":"Kembali ke Pendidikan",
+      "detail.backExperience":"Kembali ke Pengalaman",
+      "certificates.heading":"Sertifikat",
+      "certificates.intro":"Contoh tampilan sertifikat masih berupa dummy dan akan diganti begitu sertifikat resmi terbit.",
+      "certificates.note":"Sertifikat asli akan ditambahkan setelah selesai diproses.",
+      "cert1.title":"Sertifikat Web Development",
+      "cert1.issuer":"Contoh dummy — belum diterbitkan",
+      "cert1.full":"Sertifikat ini merupakan contoh tampilan (dummy) untuk pencapaian di bidang pengembangan web. Sertifikat resmi akan ditambahkan setelah proses penerbitan selesai.",
+      "cert1.issuerLabel":"Penerbit",
+      "cert1.dateLabel":"Status",
+      "cert1.dateVal":"Belum diterbitkan",
+      "cert2.title":"Sertifikat IoT & Embedded System",
+      "cert2.issuer":"Contoh dummy — belum diterbitkan",
+      "cert2.full":"Sertifikat ini merupakan contoh tampilan (dummy) untuk pencapaian di bidang IoT dan embedded system. Sertifikat resmi akan ditambahkan setelah proses penerbitan selesai.",
+      "cert2.issuerLabel":"Penerbit",
+      "cert2.dateLabel":"Status",
+      "cert2.dateVal":"Belum diterbitkan",
+      "detail.certNote":"Tampilan sertifikat masih berupa dummy dan akan diperbarui setelah sertifikat resmi terbit.",
+      "content.heading":"Portofolio Konten",
+      "content.intro":"Contoh konten media sosial berikut adalah versi dummy untuk menunjukkan format & gaya visual yang biasa saya buat — video dan desain aslinya menyusul.",
+      "content.videoHeading":"Video konten media sosial",
+      "video1.title":"Promosi Web Klasifikasi Telur",
+      "video1.meta":"YouTube",
+      "video1.full":"Video promosi resmi untuk website klasifikasi kualitas telur berbasis IoT, diunggah di kanal YouTube untuk memperkenalkan cara kerja sistem kepada calon pengguna.",
+      "video1.platform":"Platform",
+      "video1.platformVal":"YouTube",
+      "video1.format":"Format",
+      "video1.formatVal":"Video landscape 16:9",
+      "video2.title":"Behind the Scenes: Dashboard IoT",
+      "video2.meta":"Dummy · TikTok",
+      "video2.full":"Video contoh (dummy) yang menunjukkan proses di balik layar pengembangan dashboard IoT untuk klasifikasi kualitas telur. Video asli akan menyusul.",
+      "video2.platform":"Platform",
+      "video2.platformVal":"TikTok",
+      "video2.format":"Format",
+      "video2.formatVal":"Vertikal 9:16",
+      "video3.title":"Setup Laravel dalam 60 Detik",
+      "video3.meta":"Dummy · Shorts",
+      "video3.full":"Video contoh (dummy) berformat tutorial cepat untuk setup Laravel. Video asli akan menyusul.",
+      "video3.platform":"Platform",
+      "video3.platformVal":"YouTube Shorts",
+      "video3.format":"Format",
+      "video3.formatVal":"Vertikal 9:16",
+      "detail.videoNote":"Video ini adalah contoh dummy untuk menunjukkan gaya & format konten. Video asli akan diunggah setelah proses produksi selesai.",
+      "content.posterHeading":"Flyer & poster media sosial",
+      "poster1.title":"Promo Jasa Pembuatan Website",
+      "poster1.meta":"Dummy · Feed Instagram",
+      "poster1.full":"Contoh flyer promosi (dummy) untuk jasa pembuatan website, dirancang untuk unggahan feed Instagram. Desain final dapat disesuaikan dengan kebutuhan client.",
+      "poster1.format":"Format",
+      "poster1.formatVal":"Feed Instagram · 1:1",
+      "poster2.title":"Workshop Coding Gratis",
+      "poster2.meta":"Dummy · Story Instagram",
+      "poster2.full":"Contoh poster (dummy) untuk promosi workshop coding gratis, dirancang untuk unggahan story Instagram.",
+      "poster2.format":"Format",
+      "poster2.formatVal":"Story Instagram",
+      "poster3.title":"Grand Launching Toko Online",
+      "poster3.meta":"Dummy · Feed Instagram",
+      "poster3.full":"Contoh poster (dummy) untuk peluncuran toko online, dirancang untuk unggahan feed Instagram.",
+      "poster3.format":"Format",
+      "poster3.formatVal":"Feed Instagram · 1:1",
+      "detail.posterNote":"Poster ini adalah contoh dummy untuk menunjukkan gaya visual. Desain asli menyusul.",
+      "education.heading":"Pendidikan",
+      "experience.heading":"Pengalaman",
+      "journey.note":"Segera diperbarui",
+      "journey.edu.title":"Diploma IV Teknik Informatika",
+      "journey.edu.item":"Lulus — fokus pengembangan web & IoT",
+      "journey.edu.full":"Menempuh pendidikan Diploma IV Teknik Informatika dengan fokus pembelajaran pada pengembangan perangkat lunak, basis data, serta sistem berbasis web maupun IoT. Selama masa studi menyelesaikan beberapa proyek nyata di bidang web dan IoT.",
+      "journey.edu.periodLabel":"Status",
+      "journey.edu.periodVal":"Lulus",
+      "journey.exp1.title":"Magang Backend Developer",
+      "journey.exp2.title":"Bendahara BOSP",
+      "journey.exp.item1":"PT Wesclic Indonesia Neotech, Yogyakarta",
+      "journey.exp.item2":"SMP Nurul Huda II",
+      "journey.exp1.full":"Menjalani magang sebagai Backend Developer di PT Wesclic Indonesia Neotech, Yogyakarta, berkontribusi dalam pengembangan logika aplikasi dan implementasi sisi backend untuk solusi digital perusahaan.",
+      "journey.exp1.periodLabel":"Peran",
+      "journey.exp1.periodVal":"Backend Developer (Magang)",
+      "journey.exp2.full":"Bertanggung jawab sebagai Bendahara BOSP di SMP Nurul Huda II, mengelola administrasi dan pelaporan keuangan, pencatatan transaksi, pengarsipan dokumen, serta memastikan penggunaan anggaran sesuai ketentuan.",
+      "journey.exp2.periodLabel":"Peran",
+      "journey.exp2.periodVal":"Bendahara BOSP",
+      "contact.heading":"Mari terhubung",
+      "contact.p":"Terbuka untuk kolaborasi, magang, maupun proyek freelance. Kirim pesan dan saya akan membalas secepatnya.",
+      "contact.whatsapp":"WhatsApp",
+      "footer.rights":"© 2026 Adi Putra.",
+      "footer.made":"Dibangun dengan HTML, CSS & JavaScript.",
+      "detail.back":"Kembali",
+      "detail.ctaProject":"Hubungi untuk diskusi proyek serupa"
+    },
+    en:{
+      "nav.contact":"Contact Me",
+      "nav.about":"About",
+      "nav.skills":"Skills",
+      "nav.projects":"Projects",
+      "nav.certificates":"Certificates",
+      "nav.content":"Content",
+      "nav.education":"Education",
+      "nav.experience":"Experience",
+      "nav.contactSection":"Contact",
+      "hero.name":"Adi Putra",
+      "hero.role":"Web & Software Developer",
+      "hero.cta":"Message on WhatsApp",
+      "hero.mail":"Email Me",
+      "meta.status.k":"Status",
+      "meta.status.v":"Informatics Engineering Graduate (D4)",
+      "meta.focus.k":"Focus",
+      "meta.focus.v":"Frontend development & IoT",
+      "meta.base.k":"Based in",
+      "about.heading":"About me",
+      "about.p1":"I'm a Diploma IV Informatics Engineering graduate with a strong interest in software development, particularly web-based applications. During my studies I worked on several projects that gave me about 1.5 years of experience in web development, including an IoT-integrated web system for classifying egg quality and a desktop application for managing the operations of a small grocery store. I have expertise in frontend development with a solid understanding of backend concepts, enabling me to build responsive interfaces while implementing application logic as needed.",
+      "about.p2":"Beyond technical skills, I served as Treasurer of the BOSP program at SMP Nurul Huda II and completed an internship as a Backend Developer at PT Wesclic Indonesia Neotech, Yogyakarta. Those experiences sharpened my abilities in administration, data management, attention to detail, coordination, and backend development. I have a strong drive to learn, adapt easily, and I'm ready to contribute to digital solutions as well as organizational operations.",
+      "skills.heading":"Skills",
+      "skills.primary":"Primary skills",
+      "skills.secondary":"Secondary skills",
+      "projects.heading":"Projects",
+      "proj1.tag":"IoT · Web Dashboard",
+      "proj1.title":"Egg Quality Classifier",
+      "proj1.desc":"A system pairing IoT sensors with a web dashboard to automatically classify egg quality.",
+      "proj1.full":"This project pairs an IoT device that reads egg conditions with a web dashboard that shows classification results in real time, making the sorting process faster and more accurate. Sensors on the hardware read quality indicators, and the data is sent to a server and processed into readable quality categories for the operator through the dashboard.",
+      "proj1.role":"Role",
+      "proj1.roleVal":"Frontend developer with backend understanding",
+      "proj1.duration":"Duration",
+      "proj1.durationVal":"~4 months",
+      "proj1.category":"Category",
+      "proj2.tag":"Desktop App",
+      "proj2.title":"Grocery Store Manager",
+      "proj2.desc":"Desktop software for tracking stock, transactions, and sales reports for a small grocery store.",
+      "proj2.full":"Built over a year to help a grocery store owner track inventory, log daily transactions, and generate sales reports automatically, replacing manual record-keeping. The app was designed to be easy to use for non-technical daily users.",
+      "proj2.role":"Role",
+      "proj2.roleVal":"Software developer",
+      "proj2.duration":"Duration",
+      "proj2.durationVal":"1 year",
+      "proj2.category":"Category",
+      "proj3.tag":"Web Development",
+      "proj3.title":"Web Development Project",
+      "proj3.desc":"One of the web projects built during my studies, from interface design through front-end and back-end implementation.",
+      "proj3.full":"Part of the web projects I built during my studies, covering interface design in Figma, front-end implementation, and connecting it to the back-end and database. This project strengthened my ability to build responsive interfaces while implementing application logic as needed.",
+      "proj3.role":"Role",
+      "proj3.roleVal":"Frontend developer with backend understanding",
+      "proj3.duration":"Duration",
+      "proj3.durationVal":"~3 months",
+      "proj3.category":"Category",
+      "detail.category":"Category",
+      "detail.stack":"Tech stack",
+      "detail.backProjects":"Back to Projects",
+      "detail.backCerts":"Back to Certificates",
+      "detail.backContent":"Back to Content",
+      "detail.backEducation":"Back to Education",
+      "detail.backExperience":"Back to Experience",
+      "certificates.heading":"Certificates",
+      "certificates.intro":"These certificate visuals are dummy placeholders and will be swapped once the official certificates are issued.",
+      "certificates.note":"The real certificates will be added once they're finalized.",
+      "cert1.title":"Web Development Certificate",
+      "cert1.issuer":"Dummy sample — not yet issued",
+      "cert1.full":"This certificate is a dummy visual placeholder for an achievement in web development. The official certificate will be added once the issuing process is complete.",
+      "cert1.issuerLabel":"Issuer",
+      "cert1.dateLabel":"Status",
+      "cert1.dateVal":"Not yet issued",
+      "cert2.title":"IoT & Embedded Systems Certificate",
+      "cert2.issuer":"Dummy sample — not yet issued",
+      "cert2.full":"This certificate is a dummy visual placeholder for an achievement in IoT and embedded systems. The official certificate will be added once the issuing process is complete.",
+      "cert2.issuerLabel":"Issuer",
+      "cert2.dateLabel":"Status",
+      "cert2.dateVal":"Not yet issued",
+      "detail.certNote":"This certificate visual is a dummy placeholder and will be updated once the official certificate is issued.",
+      "content.heading":"Content Portfolio",
+      "content.intro":"The social content below is a dummy version showing the format & visual style I usually create — real videos and designs coming soon.",
+      "content.videoHeading":"Social media video content",
+      "video1.title":"Egg Classification Website Promo",
+      "video1.meta":"YouTube",
+      "video1.full":"An official promotional video for the IoT-based egg quality classification website, uploaded to YouTube to introduce how the system works to prospective users.",
+      "video1.platform":"Platform",
+      "video1.platformVal":"YouTube",
+      "video1.format":"Format",
+      "video1.formatVal":"Landscape video 16:9",
+      "video2.title":"Behind the Scenes: IoT Dashboard",
+      "video2.meta":"Dummy · TikTok",
+      "video2.full":"A dummy sample video showing the behind-the-scenes process of building the IoT egg-quality dashboard. The real video is coming soon.",
+      "video2.platform":"Platform",
+      "video2.platformVal":"TikTok",
+      "video2.format":"Format",
+      "video2.formatVal":"Vertical 9:16",
+      "video3.title":"Set Up Laravel in 60 Seconds",
+      "video3.meta":"Dummy · Shorts",
+      "video3.full":"A dummy sample video in a quick-tutorial format for setting up Laravel. The real video is coming soon.",
+      "video3.platform":"Platform",
+      "video3.platformVal":"YouTube Shorts",
+      "video3.format":"Format",
+      "video3.formatVal":"Vertical 9:16",
+      "detail.videoNote":"This video is a dummy sample showing the content's style & format. The real video will be uploaded once production is finished.",
+      "content.posterHeading":"Social media flyers & posters",
+      "poster1.title":"Website Service Promo",
+      "poster1.meta":"Dummy · Instagram feed",
+      "poster1.full":"A dummy sample flyer promoting website-building services, designed for an Instagram feed post. The final design can be adapted to a client's needs.",
+      "poster1.format":"Format",
+      "poster1.formatVal":"Instagram feed · 1:1",
+      "poster2.title":"Free Coding Workshop",
+      "poster2.meta":"Dummy · Instagram story",
+      "poster2.full":"A dummy sample poster promoting a free coding workshop, designed for an Instagram story post.",
+      "poster2.format":"Format",
+      "poster2.formatVal":"Instagram story",
+      "poster3.title":"Online Store Grand Launch",
+      "poster3.meta":"Dummy · Instagram feed",
+      "poster3.full":"A dummy sample poster for an online store launch, designed for an Instagram feed post.",
+      "poster3.format":"Format",
+      "poster3.formatVal":"Instagram feed · 1:1",
+      "detail.posterNote":"This poster is a dummy sample showing the visual style. The real design is coming soon.",
+      "education.heading":"Education",
+      "experience.heading":"Experience",
+      "journey.note":"Updates coming soon",
+      "journey.edu.title":"Diploma IV Informatics Engineering",
+      "journey.edu.item":"Graduated — focus on web development & IoT",
+      "journey.edu.full":"Completed a Diploma IV in Informatics Engineering, focusing on software development, databases, and web- and IoT-based systems. Completed several real-world web and IoT projects during the program.",
+      "journey.edu.periodLabel":"Status",
+      "journey.edu.periodVal":"Graduated",
+      "journey.exp1.title":"Backend Developer Internship",
+      "journey.exp2.title":"BOSP Treasurer",
+      "journey.exp.item1":"PT Wesclic Indonesia Neotech, Yogyakarta",
+      "journey.exp.item2":"SMP Nurul Huda II",
+      "journey.exp1.full":"Completed an internship as a Backend Developer at PT Wesclic Indonesia Neotech, Yogyakarta, contributing to application logic development and backend implementation for the company's digital solutions.",
+      "journey.exp1.periodLabel":"Role",
+      "journey.exp1.periodVal":"Backend Developer (Intern)",
+      "journey.exp2.full":"Served as Treasurer of the BOSP program at SMP Nurul Huda II, managing financial administration and reporting, transaction records, document archiving, and ensuring budget usage complied with regulations.",
+      "journey.exp2.periodLabel":"Role",
+      "journey.exp2.periodVal":"BOSP Treasurer",
+      "contact.heading":"Let's connect",
+      "contact.p":"Open to collaboration, internships, and freelance work. Send a message and I'll get back to you soon.",
+      "contact.whatsapp":"WhatsApp",
+      "footer.rights":"© 2026 Adi Putra.",
+      "footer.made":"Built with HTML, CSS & JavaScript.",
+      "detail.back":"Back",
+      "detail.ctaProject":"Contact me to discuss a similar project"
+    }
+  };
 
+  const langButtons = document.querySelectorAll('.lang-switch button');
+  const els = document.querySelectorAll('[data-i18n]');
+  let currentDetailKey = null;
+  let lastScrollY = 0;
 
-          <div class="portfolio-modal modal fade" id="portfolioModal8" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/images/icons/close.svg" style="cursor: pointer;" alt="close" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name 8</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
+  function t(key){
+    const dict = translations[window.__currentLang || 'id'];
+    return (dict && dict[key] !== undefined) ? dict[key] : '';
+  }
 
+  function applyLang(lang){
+    els.forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      const dict = translations[lang];
+      if(dict && dict[key] !== undefined){
+        el.innerHTML = dict[key];
+      }
+    });
+    langButtons.forEach(btn=>{
+      btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
+    });
+    document.documentElement.lang = lang;
+    window.__currentLang = lang;
+    if(currentDetailKey){ renderDetail(currentDetailKey); }
+  }
 
-          <div class="portfolio-modal modal fade" id="portfolioModal9" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/images/icons/close.svg" style="cursor: pointer;" alt="close" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name 9</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
+  langButtons.forEach(btn=>{
+    btn.addEventListener('click', ()=> applyLang(btn.dataset.lang));
+  });
 
+  applyLang('id');
 
-        <!-- End Modal Area  -->
-    </main>
-    <!-- JS ============================================ -->
-    <script src="assets/js/vendor/jquery.js"></script>
-    <script src="assets/js/vendor/modernizer.min.js"></script>
-    <script src="assets/js/vendor/feather.min.js"></script>
-    <script src="assets/js/vendor/slick.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.js"></script>
-    <script src="assets/js/vendor/text-type.js"></script>
-    <script src="assets/js/vendor/wow.js"></script>
-    <script src="assets/js/vendor/aos.js"></script>
-    <script src="assets/js/vendor/particles.js"></script>
-    <script src="assets/js/vendor/jquery-one-page-nav.js"></script>
-    <!-- main JS -->
-    <script src="assets/js/main.js"></script>
+  // scroll spy (only active when not viewing a detail page)
+  const navLinks = document.querySelectorAll('.section-nav a');
+  const sections = Array.from(navLinks).map(a=>document.querySelector(a.getAttribute('href')));
+  function onScroll(){
+    if(document.body.classList.contains('detail-open')) return;
+    let idx = 0;
+    sections.forEach((sec,i)=>{
+      if(sec && sec.getBoundingClientRect().top - 140 <= 0) idx = i;
+    });
+    navLinks.forEach((a,i)=> a.classList.toggle('active', i===idx));
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---------------- detail page ---------------- */
+
+  const detailData = {
+    project:{
+      p1:{tagKey:'proj1.tag', titleKey:'proj1.title', bodyKey:'proj1.full', stack:['PHP','MySQL','IoT'], meta:[['proj1.role','proj1.roleVal'],['proj1.duration','proj1.durationVal'],['detail.category','proj1.tag']], backKey:'detail.backProjects', backHash:'#projects', cta:true},
+      p2:{tagKey:'proj2.tag', titleKey:'proj2.title', bodyKey:'proj2.full', stack:['Desktop','MySQL'], meta:[['proj2.role','proj2.roleVal'],['proj2.duration','proj2.durationVal'],['detail.category','proj2.tag']], backKey:'detail.backProjects', backHash:'#projects', cta:true},
+      p3:{tagKey:'proj3.tag', titleKey:'proj3.title', bodyKey:'proj3.full', stack:['JavaScript','Laravel'], meta:[['proj3.role','proj3.roleVal'],['proj3.duration','proj3.durationVal'],['detail.category','proj3.tag']], backKey:'detail.backProjects', backHash:'#projects', cta:true}
+    },
+    cert:{
+      c1:{tagKey:'cert1.title', titleKey:'cert1.title', bodyKey:'cert1.full', meta:[['cert1.issuerLabel','cert1.issuer'],['cert1.dateLabel','cert1.dateVal']], noteKey:'detail.certNote', backKey:'detail.backCerts', backHash:'#certificates'},
+      c2:{tagKey:'cert2.title', titleKey:'cert2.title', bodyKey:'cert2.full', meta:[['cert2.issuerLabel','cert2.issuer'],['cert2.dateLabel','cert2.dateVal']], noteKey:'detail.certNote', backKey:'detail.backCerts', backHash:'#certificates'}
+    },
+    video:{
+      v1:{tagKey:'video1.meta', titleKey:'video1.title', bodyKey:'video1.full', meta:[['video1.platform','video1.platformVal'],['video1.format','video1.formatVal']], noteKey:null, backKey:'detail.backContent', backHash:'#content'},
+      v2:{tagKey:'video2.meta', titleKey:'video2.title', bodyKey:'video2.full', meta:[['video2.platform','video2.platformVal'],['video2.format','video2.formatVal']], noteKey:'detail.videoNote', backKey:'detail.backContent', backHash:'#content'},
+      v3:{tagKey:'video3.meta', titleKey:'video3.title', bodyKey:'video3.full', meta:[['video3.platform','video3.platformVal'],['video3.format','video3.formatVal']], noteKey:'detail.videoNote', backKey:'detail.backContent', backHash:'#content'}
+    },
+    poster:{
+      po1:{tagKey:'poster1.meta', titleKey:'poster1.title', bodyKey:'poster1.full', meta:[['poster1.format','poster1.formatVal']], noteKey:'detail.posterNote', backKey:'detail.backContent', backHash:'#content'},
+      po2:{tagKey:'poster2.meta', titleKey:'poster2.title', bodyKey:'poster2.full', meta:[['poster2.format','poster2.formatVal']], noteKey:'detail.posterNote', backKey:'detail.backContent', backHash:'#content'},
+      po3:{tagKey:'poster3.meta', titleKey:'poster3.title', bodyKey:'poster3.full', meta:[['poster3.format','poster3.formatVal']], noteKey:'detail.posterNote', backKey:'detail.backContent', backHash:'#content'}
+    },
+    edu:{
+      edu1:{tagKey:'education.heading', titleKey:'journey.edu.title', bodyKey:'journey.edu.full', meta:[['journey.edu.periodLabel','journey.edu.periodVal']], list:['journey.edu.item'], noteKey:'journey.note', backKey:'detail.backEducation', backHash:'#education'}
+    },
+    exp:{
+      exp1:{tagKey:'experience.heading', titleKey:'journey.exp1.title', bodyKey:'journey.exp1.full', meta:[['journey.exp1.periodLabel','journey.exp1.periodVal']], list:['journey.exp.item1'], noteKey:'journey.note', backKey:'detail.backExperience', backHash:'#experience'},
+      exp2:{tagKey:'experience.heading', titleKey:'journey.exp2.title', bodyKey:'journey.exp2.full', meta:[['journey.exp2.periodLabel','journey.exp2.periodVal']], list:['journey.exp.item2'], noteKey:'journey.note', backKey:'detail.backExperience', backHash:'#experience'}
+    }
+  };
+
+  const detailView = document.getElementById('detailView');
+  const detailVisualWrap = document.getElementById('detailVisualWrap');
+  const detailTag = document.getElementById('detailTag');
+  const detailTitle = document.getElementById('detailTitle');
+  const detailMetaRow = document.getElementById('detailMetaRow');
+  const detailBody = document.getElementById('detailBody');
+  const detailStack = document.getElementById('detailStack');
+  const detailList = document.getElementById('detailList');
+  const detailNote = document.getElementById('detailNote');
+  const detailCta = document.getElementById('detailCta');
+  const detailBack = document.getElementById('detailBack');
+  const detailBackLabel = document.getElementById('detailBackLabel');
+
+  function findCard(type, id){
+    return document.querySelector('[data-detail="'+type+':'+id+'"]');
+  }
+
+  function cloneVisual(type, id){
+    const card = findCard(type, id);
+    detailVisualWrap.innerHTML = '';
+    if(!card) return;
+    const svg = card.querySelector('svg');
+    const video = card.querySelector('video');
+    const iframe = card.querySelector('iframe');
+    const img = card.querySelector('img.project-thumb');
+    if(video){
+      const clone = video.cloneNode(true);
+      clone.setAttribute('controls','');
+      clone.removeAttribute('muted');
+      clone.style.aspectRatio = '9/16';
+      clone.style.background = '#000';
+      detailVisualWrap.appendChild(clone);
+    } else if(iframe){
+      // Real embeds (e.g. YouTube) keep their native 16:9 shape in the detail view.
+      const clone = iframe.cloneNode(true);
+      detailVisualWrap.appendChild(clone);
+    } else if(svg){
+      detailVisualWrap.appendChild(svg.cloneNode(true));
+    } else if(img){
+      detailVisualWrap.appendChild(img.cloneNode(true));
+    }
+  }
+
+  function renderDetail(key){
+    const [type, id] = key.split(':');
+    const data = detailData[type] && detailData[type][id];
+    if(!data) return;
+    currentDetailKey = key;
+
+    cloneVisual(type, id);
+    detailTag.textContent = t(data.tagKey);
+    detailTitle.textContent = t(data.titleKey);
+    detailBody.innerHTML = '<p>' + t(data.bodyKey) + '</p>';
+
+    detailMetaRow.innerHTML = '';
+    (data.meta || []).forEach(([kKey, vKey])=>{
+      const item = document.createElement('div');
+      item.className = 'detail-meta-item';
+      const k = document.createElement('span'); k.className='k'; k.textContent = t(kKey);
+      const v = document.createElement('span'); v.className='v'; v.textContent = t(vKey);
+      item.appendChild(k); item.appendChild(v);
+      detailMetaRow.appendChild(item);
+    });
+
+    detailStack.innerHTML = '';
+    (data.stack || []).forEach(s=>{
+      const span = document.createElement('span');
+      span.textContent = s;
+      detailStack.appendChild(span);
+    });
+
+    detailList.innerHTML = '';
+    (data.list || []).forEach(lk=>{
+      const li = document.createElement('li');
+      li.textContent = t(lk);
+      detailList.appendChild(li);
+    });
+
+    detailNote.textContent = data.noteKey ? t(data.noteKey) : '';
+
+    detailCta.innerHTML = '';
+    if(data.cta){
+      const a = document.createElement('a');
+      a.className = 'btn-primary';
+      a.href = 'https://api.whatsapp.com/send/?phone=6285707038940&text&type=phone_number&app_absent=0';
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = t('detail.ctaProject');
+      detailCta.appendChild(a);
+    }
+
+    detailBackLabel.textContent = t(data.backKey || 'detail.back');
+    detailBack.dataset.backHash = data.backHash || '';
+  }
+
+  function openDetail(key){
+    lastScrollY = window.scrollY;
+    renderDetail(key);
+    document.body.classList.add('detail-open');
+    detailView.classList.add('open');
+    window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+  }
+
+  function closeDetail(){
+    document.body.classList.remove('detail-open');
+    detailView.classList.remove('open');
+    currentDetailKey = null;
+  }
+
+  document.querySelectorAll('[data-detail]').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const key = card.getAttribute('data-detail');
+      window.location.hash = 'detail-' + key.replace(':','-');
+    });
+  });
+
+  detailBack.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const hash = detailBack.dataset.backHash || '';
+    window.location.hash = hash ? hash.replace('#','') : '';
+  });
+
+  function handleHash(){
+    const raw = window.location.hash.replace('#','');
+    if(raw.indexOf('detail-') === 0){
+      const rest = raw.slice('detail-'.length);
+      const sepIdx = rest.indexOf('-');
+      if(sepIdx > -1){
+        const type = rest.slice(0, sepIdx);
+        const id = rest.slice(sepIdx+1);
+        openDetail(type+':'+id);
+        return;
+      }
+    }
+    if(document.body.classList.contains('detail-open')){
+      closeDetail();
+      window.scrollTo(0, lastScrollY);
+      if(raw){
+        const target = document.getElementById(raw);
+        if(target){ setTimeout(()=> target.scrollIntoView({behavior:'smooth'}), 30); }
+      }
+    }
+  }
+
+  window.addEventListener('hashchange', handleHash);
+  handleHash();
+
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Escape' && document.body.classList.contains('detail-open')){
+      const hash = detailBack.dataset.backHash || '';
+      window.location.hash = hash ? hash.replace('#','') : '';
+    }
+  });
+})();
+</script>
+
 </body>
-
 </html>
